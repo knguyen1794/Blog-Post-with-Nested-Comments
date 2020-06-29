@@ -21,7 +21,7 @@ export class Header extends Component {
               Blog Site
             </a>
           </div>
-          Some buttons here.
+          Login
         </div>
       </nav>
     );

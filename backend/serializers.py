@@ -17,7 +17,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class PostSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Post
-        fields = ['id', 'post']
+        fields = ['id', 'post', 'title']
 
 class RecursiveSerializer(serializers.Serializer):
     def to_representation(self, value):

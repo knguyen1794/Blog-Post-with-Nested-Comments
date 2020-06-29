@@ -4,6 +4,7 @@ from django.db import models
 
 class Post(models.Model):
     post = models.TextField()
+    title = models.CharField(max_length=100)
     
 class Comment(models.Model):
     comment = models.CharField(max_length=250)

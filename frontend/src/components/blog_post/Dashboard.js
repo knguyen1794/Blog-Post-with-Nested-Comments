@@ -32,13 +32,21 @@ export class Dashboard extends Component {
               const postComments = comments.filter(
                 item => item.from_post === post.id && item.parent === null
               );
-              console.log(postComments);
+              const commentCount = comments.filter(
+                item => item.from_post === post.id
+              ).length;
               return (
                 <Fragment>
                   <li href="#" className="list-group-item">
-                    <h3>Post {index + 1}</h3>
+                    <h3>
+                      Post {index + 1}: {post.title}
+                    </h3>
                     <p>{post.post}</p>
+                    <span class="badge badge-info badge-pill">
+                      {commentCount} Comments
+                    </span>
                   </li>
+
                   {postComments.map((comment, index) => (
                     <Comment comment={comment} />
                   ))}

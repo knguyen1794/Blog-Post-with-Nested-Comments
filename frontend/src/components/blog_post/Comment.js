@@ -8,7 +8,6 @@ export class Comment extends Component {
       <div className="list-group">
         <li href="#" className="list-group-item">
           {comment.comment}
-
           <ChildrenComments comments={comment.reply_set} />
         </li>
       </div>
