@@ -1,40 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, Fragment } from "react";
+import Header from "./components/layout/Header";
+import "./App.css";
+import Dashboard from "./components/blog_post/Dashboard";
 
-function App() {
-  // store users in a new variable
-  const [users, setUsers] = useState([]);
+export class App extends Component {
+  componentDidMount() {
+    console.log("Compoenent mounted.");
+  }
 
-  useEffect(() => {
-    let fetchData = async () => {
-      let response = await fetch('/api/users')
-      let json = await response.json()
-      setUsers(json)
-    }
-    fetchData()
-  }, []);
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>Users</h1>
-        {users.map((user) => <p>
-          {user.username} {user.email}
-        </p>
-        )}
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  render() {
+    return (
+      <Fragment>
+        <Header />
+        <Dashboard />
+      </Fragment>
+    );
+  }
 }
 
 export default App;
