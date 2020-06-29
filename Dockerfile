@@ -27,5 +27,5 @@ COPY --from=0 /nodebuild/build /app/frontend/build
 
 # Set environment variables from .env during collect static
 # so that the app uses the production location for static files
-RUN export $(grep -v '^#' .env | xargs) && python3 manage.py collectstatic --noinput
+RUN export $(grep -v '^#' .env | xargs) && python3 manage.py makemigrations -noinput && python3 manage.py migrate --noinput && python3 manage.py collectstatic --noinput
 RUN rm .env
