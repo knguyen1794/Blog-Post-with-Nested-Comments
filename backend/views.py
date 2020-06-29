@@ -3,10 +3,13 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from rest_framework import viewsets, routers
-from backend.serializers import UserSerializer, GroupSerializer
+from rest_framework.decorators import action
+from backend.serializers import UserSerializer, GroupSerializer, PostSerializer, CommentSerializer
 
 from mysite import settings
 import os
+
+from backend.models import Post, Comment
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -22,6 +25,26 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+
+class PostViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+class CommentViewSet(viewsets.ModelViewSet):
+    # queryset = Comment.objects.filter(parent=None) # Don't
+    queryset = Comment.objects.all()
+
+    serializer_class = CommentSerializer
+
+    @action(detail=False)
+    def roots(self, request):
+        queryset = Comment.objects.filter(parent=None)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
 
 # View to return the static front-end code
 def index(request):

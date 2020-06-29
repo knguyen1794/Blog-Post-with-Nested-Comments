@@ -7,6 +7,8 @@ from . import views
 apiRouter = routers.DefaultRouter()
 apiRouter.register(r'users', views.UserViewSet)
 apiRouter.register(r'groups', views.GroupViewSet)
+apiRouter.register(r'posts', views.PostViewSet)
+apiRouter.register(r'comments', views.CommentViewSet)
 
 # urls provided by the backend
 urlpatterns = [
