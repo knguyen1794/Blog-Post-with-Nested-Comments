@@ -1,7 +1,10 @@
 This repo contains a sample application for a 
 node front-end that calls  a Django REST Framework API
 and uses a PostgreSQL database.
- 
+
+## Demo
+http://blogdemoapp.azurewebsites.net/
+
 ## Using the Code
 
 Pre-requisites:
